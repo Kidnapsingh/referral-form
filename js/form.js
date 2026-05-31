@@ -1,6 +1,6 @@
 // form.js — Multi-step form state machine and DOM rendering.
 
-import { validateStep, stepSchemas } from "js/validation.js";
+import { validateStep, stepSchemas } from "/validation.js";
 
 let currentStep = 1;
 const TOTAL_STEPS = 3; // Step 1, Step 2, Review
