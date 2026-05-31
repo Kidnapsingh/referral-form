@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Submit a referral securely." />
+  <title>Submit Referral</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════ FORM CARD ═══════════════════ -->
+  <div class="card" id="form-card">
+
+    <!-- Header -->
+    <div class="card-header">
+      <p class="card-eyebrow">Secure Referral Portal</p>
+      <h1 class="card-title">Submit Referral</h1>
+    </div>
+
+    <!-- Progress -->
+    <nav class="progress-bar" aria-label="Form progress">
+
+      <div class="step-item">
+        <div class="step-meta">
+          <div class="step-dot active" id="dot-1" aria-label="Step 1: Your Details">
+            <span class="dot-num">1</span>
+          </div>
+          <span class="step-label active" id="label-1">Details</span>
+        </div>
+        <div class="step-line" id="line-1"></div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-meta">
+          <div class="step-dot" id="dot-2" aria-label="Step 2: Referral Info">
+            <span class="dot-num">2</span>
+          </div>
+          <span class="step-label" id="label-2">Referral</span>
+        </div>
+        <div class="step-line" id="line-2"></div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-meta">
+          <div class="step-dot" id="dot-3" aria-label="Step 3: Review">
+            <span class="dot-num">3</span>
+          </div>
+          <span class="step-label" id="label-3">Review</span>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Form Body -->
+    <div class="card-body">
+      <form id="multi-step-form" novalidate aria-label="Submit referral form">
+
+        <!-- ══ STEP 1: Core Fields ══ -->
+        <fieldset class="form-panel" data-step="1" aria-labelledby="s1-title">
+          <legend class="sr-only">Your Details</legend>
+          <p class="step-heading" id="s1-title">Your Details</p>
+          <p class="step-sub">Tell us about the person you're referring.</p>
+
+          <div class="fields">
+            <div class="field-row">
+              <div class="field">
+                <label for="firstName">First Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="firstName" data-field="firstName"
+                       autocomplete="given-name" placeholder="Jane" required />
+              </div>
+              <div class="field">
+                <label for="lastName">Last Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="lastName" data-field="lastName"
+                       autocomplete="family-name" placeholder="Smith" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email Address <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="email" data-field="email"
+                     autocomplete="email" placeholder="jane.smith@example.com" required />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" data-field="phone"
+                     autocomplete="tel" placeholder="+44 7700 900000" />
+            </div>
+
+            <div class="field">
+              <label for="estimatedAmount">Estimated Amount</label>
+              <div class="input-prefix-wrap">
+                <span class="input-prefix" aria-hidden="true">£</span>
+                <input type="text" id="estimatedAmount" data-field="estimatedAmount"
+                       inputmode="decimal" placeholder="10,000" />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ══ STEP 2: Referral Info ══ -->
+        <fieldset class="form-panel" data-step="2" hidden aria-hidden="true" aria-labelledby="s2-title">
+          <legend class="sr-only">Referral Information</legend>
+          <p class="step-heading" id="s2-title">Referral Information</p>
+          <p class="step-sub">Help us understand the context of this referral.</p>
+
+          <div class="fields">
+            <div class="field">
+              <label for="referralSource">How did they hear about us? <span class="req" aria-hidden="true">*</span></label>
+              <select id="referralSource" data-field="referralSource" required>
+                <option value="" disabled selected>Select a source…</option>
+                <option value="Word of Mouth">Word of Mouth</option>
+                <option value="Social Media">Social Media</option>
+                <option value="Event">Event / Conference</option>
+                <option value="Email Campaign">Email Campaign</option>
+                <option value="Partner">Partner Organisation</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="relationship">Your relationship to them <span class="req" aria-hidden="true">*</span></label>
+              <select id="relationship" data-field="relationship" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="Colleague">Colleague</option>
+                <option value="Client">Existing Client</option>
+                <option value="Friend">Friend / Family</option>
+                <option value="Professional Contact">Professional Contact</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" data-field="notes"
+                        placeholder="Any context that would help our team…"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ══ STEP 3: Review ══ -->
+        <div class="form-panel" data-step="3" hidden aria-hidden="true">
+          <p class="review-intro">Review &amp; Confirm</p>
+          <p class="review-sub">Please check the details below before submitting.</p>
+          <div class="review-table" id="review-content" aria-live="polite"></div>
+        </div>
+
+      </form>
+
+      <!-- Navigation -->
+      <div class="form-nav" role="group" aria-label="Form navigation">
+        <button type="button" class="btn btn--ghost" id="btn-prev" hidden>← Back</button>
+        <button type="button" class="btn btn--primary" id="btn-next">Continue →</button>
+        <button type="button" class="btn btn--primary" id="btn-submit" hidden>Submit Referral ✓</button>
+      </div>
+
+    </div><!-- /card-body -->
+  </div><!-- /card -->
+
+  <!-- ═══════════════════ SUCCESS ═══════════════════ -->
+  <div class="card" id="screen-success" hidden aria-live="assertive">
+    <div class="status-screen">
+      <span class="status-icon" aria-hidden="true">✦</span>
+      <h2 class="status-title">Referral Submitted</h2>
+      <p class="status-body">
+        Thank you — your referral has been received and logged in our system.
+        Our team will be in touch shortly.
+      </p>
+      <p class="status-ref" id="success-ref" hidden></p>
+      <button type="button" class="btn btn--ghost" id="btn-restart">Submit another referral</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ FAILURE ═══════════════════ -->
+  <div class="card" id="screen-failure" hidden aria-live="assertive">
+    <div class="status-screen">
+      <span class="status-icon" aria-hidden="true">⚠</span>
+      <h2 class="status-title">Something went wrong</h2>
+      <p class="status-body" id="failure-message">An unexpected error occurred.</p>
+      <p class="status-ref" id="failure-corr" hidden></p>
+      <button type="button" class="btn btn--primary" id="btn-retry">← Back to Review</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ LOADING ═══════════════════ -->
+  <div id="loading-overlay" hidden aria-hidden="true" role="status" aria-label="Submitting referral">
+    <div class="spinner"></div>
+    <p>Submitting referral…</p>
+  </div>
+
+  <!-- Screen-reader only utility class -->
+  <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}</style>
+
+  <!-- Progress dot/line sync -->
+  <script>
+    document.addEventListener('stepchange', (e) => {
+      const { step } = e.detail;
+      // Dots
+      [1,2,3].forEach(i => {
+        const dot = document.getElementById('dot-' + i);
+        const lbl = document.getElementById('label-' + i);
+        if (!dot) return;
+        dot.classList.toggle('active', i === step);
+        dot.classList.toggle('done',   i < step);
+        if (lbl) { lbl.classList.toggle('active', i === step); }
+      });
+      // Lines
+      [1,2].forEach(i => {
+        const line = document.getElementById('line-' + i);
+        if (line) line.classList.toggle('filled', i < step);
+      });
+    });
+  </script>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
