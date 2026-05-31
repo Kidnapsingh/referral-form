@@ -1,7 +1,7 @@
 // app.js — Entry point. Wires form + API + UI state together.
 
-import { initForm, flattenPayload, setStep, goNext, goPrev } from "js/form.js";
-import { submitForm } from "js/api.js";
+import { initForm, flattenPayload, setStep, goNext, goPrev } from "/form.js";
+import { submitForm } from "/api.js";
 
 function showLoading(visible) {
   const overlay = document.getElementById("loading-overlay");
